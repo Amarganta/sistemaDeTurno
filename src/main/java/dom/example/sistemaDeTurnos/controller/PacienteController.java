@@ -52,4 +52,10 @@ public class PacienteController {
         return  pacienteService.getTodos();
     }
 
+    @GetMapping("/{nombre}")
+    public ResponseEntity<?> buscarPacientePorNombre(String nombre){
+        pacienteService.buscarPacientePorNombre(nombre);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
 }
