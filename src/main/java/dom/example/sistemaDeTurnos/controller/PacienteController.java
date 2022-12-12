@@ -12,6 +12,7 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/pacientes")
 public class PacienteController {
+ 
     @Autowired
     IPacienteService pacienteService;
 
