@@ -1,6 +1,8 @@
 package dom.example.sistemaDeTurnos.controller;
 
 import dom.example.sistemaDeTurnos.dto.OdontologoDTO;
+import dom.example.sistemaDeTurnos.exception.BadRequestException;
+import dom.example.sistemaDeTurnos.exception.EntityNotFoundException;
 import dom.example.sistemaDeTurnos.service.IOdontologoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,32 +21,32 @@ public class OdontologoController {
     IOdontologoService odontologoService;
 
     @PostMapping
-    public ResponseEntity<?> crearOdontologo(@RequestBody OdontologoDTO odontologoDTO){
+    public ResponseEntity<?> crearOdontologo(@RequestBody OdontologoDTO odontologoDTO) throws BadRequestException {
         odontologoService.crearOdontologo(odontologoDTO);
         logger.info("El odontologo " + odontologoDTO.getNombre() + " " + odontologoDTO.getApellido() + " ha sido creado correctamente en la base de datos");
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public OdontologoDTO getOdontologo(@PathVariable Long id){
+    public OdontologoDTO getOdontologo(@PathVariable Long id) throws EntityNotFoundException {
         return odontologoService.leerOdontologo(id);
     }
 
     @PutMapping
-    public ResponseEntity<?> modificarOdontologo(@RequestBody OdontologoDTO odontologoDTO){
+    public ResponseEntity<?> modificarOdontologo(@RequestBody OdontologoDTO odontologoDTO) throws EntityNotFoundException, BadRequestException{
         odontologoService.modificarOdontologo(odontologoDTO);
         logger.info("El odontologo " + odontologoDTO.getNombre() + " " + odontologoDTO.getApellido() + " ha sido actualizado correctamente en la base de datos");
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarOdontologo(@PathVariable Long id){
+    public ResponseEntity<?> eliminarOdontologo(@PathVariable Long id) throws EntityNotFoundException{
         odontologoService.eliminarOdontologo(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @GetMapping
-    public Collection<OdontologoDTO> getTodosLosOdontologos(){
+    public Collection<OdontologoDTO> getTodosLosOdontologos() throws EntityNotFoundException{
         logger.info("Estos son todos los odontologos de la base de datos");
         return  odontologoService.getTodos();
     }
