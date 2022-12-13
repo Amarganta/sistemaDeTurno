@@ -17,7 +17,7 @@ import java.util.Collection;
 @RequestMapping("/odontologos")
 public class OdontologoController {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
 
     @Autowired
@@ -26,7 +26,7 @@ public class OdontologoController {
     @PostMapping
     public ResponseEntity<?> crearOdontologo(@RequestBody OdontologoDTO odontologoDTO) throws BadRequestException {
         odontologoService.crearOdontologo(odontologoDTO);
-        logger.info("El odontologo " + odontologoDTO.getNombre() + " " + odontologoDTO.getApellido() + " ha sido creado correctamente en la base de datos");
+        LOGGER.info("El odontologo " + odontologoDTO.getNombre() + " " + odontologoDTO.getApellido() + " ha sido creado correctamente en la base de datos");
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -38,7 +38,7 @@ public class OdontologoController {
     @PutMapping
     public ResponseEntity<?> modificarOdontologo(@RequestBody OdontologoDTO odontologoDTO) throws EntityNotFoundException, BadRequestException{
         odontologoService.modificarOdontologo(odontologoDTO);
-        logger.info("El odontologo " + odontologoDTO.getNombre() + " " + odontologoDTO.getApellido() + " ha sido actualizado correctamente en la base de datos");
+        LOGGER.info("El odontologo " + odontologoDTO.getNombre() + " " + odontologoDTO.getApellido() + " ha sido actualizado correctamente en la base de datos");
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -50,7 +50,7 @@ public class OdontologoController {
 
     @GetMapping
     public Collection<OdontologoDTO> getTodosLosOdontologos() throws EntityNotFoundException{
-        logger.info("Estos son todos los odontologos de la base de datos");
+        LOGGER.info("Estos son todos los odontologos de la base de datos");
         return  odontologoService.getTodos();
     }
 

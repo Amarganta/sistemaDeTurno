@@ -34,7 +34,6 @@ public class AppUser implements UserDetails {
 
     }
 
-
     public AppUser( String nombre, String username, String email, String password, AppUsuarioRoles appUsuarioRoles) {
         this.nombre = nombre;
         this.username = username;
@@ -44,9 +43,9 @@ public class AppUser implements UserDetails {
 
     }
 
-    public AppUser(String nombre, String username, String password, AppUsuarioRoles appUsuarioRoles) {
+   /* public AppUser(String nombre, String username, String password, AppUsuarioRoles appUsuarioRoles) {
     }
-
+*/
 
     public Long getId() {
         return id;
