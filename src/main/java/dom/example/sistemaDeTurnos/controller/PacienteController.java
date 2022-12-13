@@ -4,19 +4,19 @@ import dom.example.sistemaDeTurnos.dto.PacienteDTO;
 import dom.example.sistemaDeTurnos.exception.BadRequestException;
 import dom.example.sistemaDeTurnos.exception.EntityNotFoundException;
 import dom.example.sistemaDeTurnos.service.IPacienteService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.apache.log4j.*;
 import java.util.Collection;
 
 @RestController
 @RequestMapping("/pacientes")
 public class PacienteController {
 
-    private static final Logger logger = Logger.getLogger(PacienteController.class);
-
+    private static final Logger logger = LogManager.getLogger();
     @Autowired
     IPacienteService pacienteService;
 
