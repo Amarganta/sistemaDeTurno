@@ -13,4 +13,5 @@ public interface IPacienteService {
 
     Set<PacienteDTO> getTodos();
 
+    PacienteDTO buscarPacientePorNombre(String nombre);
 }

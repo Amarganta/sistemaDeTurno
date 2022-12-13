@@ -60,4 +60,11 @@ public class PacienteService implements IPacienteService {
         }
         return pacientesDTO;
     }
+
+    @Override
+    public PacienteDTO buscarPacientePorNombre(String nombre) {
+        Paciente paciente = pacienteRepository.buscarPacientePorNombre(nombre).get();
+        PacienteDTO pacienteDTO = mapper.convertValue(paciente, PacienteDTO.class);
+        return pacienteDTO;
+    }
 }

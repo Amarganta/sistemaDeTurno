@@ -4,18 +4,21 @@ import dom.example.sistemaDeTurnos.dto.OdontologoDTO;
 import dom.example.sistemaDeTurnos.exception.BadRequestException;
 import dom.example.sistemaDeTurnos.exception.EntityNotFoundException;
 import dom.example.sistemaDeTurnos.service.IOdontologoService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.apache.log4j.*;
+
 import java.util.Collection;
 
 @RestController
 @RequestMapping("/odontologos")
 public class OdontologoController {
 
-    private static final Logger logger = Logger.getLogger(PacienteController.class);
+    private static final Logger LOGGER = LogManager.getLogger();
+
 
     @Autowired
     IOdontologoService odontologoService;
@@ -23,7 +26,7 @@ public class OdontologoController {
     @PostMapping
     public ResponseEntity<?> crearOdontologo(@RequestBody OdontologoDTO odontologoDTO) throws BadRequestException {
         odontologoService.crearOdontologo(odontologoDTO);
-        logger.info("El odontologo " + odontologoDTO.getNombre() + " " + odontologoDTO.getApellido() + " ha sido creado correctamente en la base de datos");
+        LOGGER.info("El odontologo " + odontologoDTO.getNombre() + " " + odontologoDTO.getApellido() + " ha sido creado correctamente en la base de datos");
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -35,7 +38,7 @@ public class OdontologoController {
     @PutMapping
     public ResponseEntity<?> modificarOdontologo(@RequestBody OdontologoDTO odontologoDTO) throws EntityNotFoundException, BadRequestException{
         odontologoService.modificarOdontologo(odontologoDTO);
-        logger.info("El odontologo " + odontologoDTO.getNombre() + " " + odontologoDTO.getApellido() + " ha sido actualizado correctamente en la base de datos");
+        LOGGER.info("El odontologo " + odontologoDTO.getNombre() + " " + odontologoDTO.getApellido() + " ha sido actualizado correctamente en la base de datos");
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -47,7 +50,7 @@ public class OdontologoController {
 
     @GetMapping
     public Collection<OdontologoDTO> getTodosLosOdontologos() throws EntityNotFoundException{
-        logger.info("Estos son todos los odontologos de la base de datos");
+        LOGGER.info("Estos son todos los odontologos de la base de datos");
         return  odontologoService.getTodos();
     }
 
